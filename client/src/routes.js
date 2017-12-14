@@ -6,6 +6,7 @@ import About from './components/about';
 import VendorLogin from './container/validLogin';
 import { VendorDashboard } from './container/vendorDashboard';
 import VendorPackages from './container/vendorPackages';
+import LandingStep from './components/company/landingStep'
 
 
 class AppRoutes extends Component{
@@ -17,6 +18,7 @@ class AppRoutes extends Component{
 		        <Route path="/login" component={VendorLogin}/>
 		        <Route path="/company" component={VendorDashboard}/>
 		        <Route path="/packages" component={VendorPackages}/>
+		        <Route path="/company-landing-steps" component={LandingStep}/>
 		    </Router>
 			)
 	}

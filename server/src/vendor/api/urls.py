@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import (CompanyListView, CompanyDetailView,
                     PackageListView, PackageDetailView,
-                    UserDetailView)
+                    UserDetailView, UserCreateView)
 
 urlpatterns = [
     url(r'companies/', CompanyListView.as_view(), name='companies'),
@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'packages/', PackageListView.as_view(),
         name='package_list'),
     url(r'package-detail/(?P<pk>\d+)', PackageDetailView.as_view(),
-        name='package_detail')
+        name='package_detail'),
+    url(r'user_create/', UserCreateView.as_view(),
+        name='user_create')
 
 ]

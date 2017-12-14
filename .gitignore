@@ -1,0 +1,4 @@
+.idea/
+server/src/vendor/migrations/
+server/src/vendor/__pycache__/
+server/src/vendor/api/__pycache__/

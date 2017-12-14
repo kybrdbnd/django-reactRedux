@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { loginCreditential } from '../actions/loginForm';
+import { signinCreditential, signupCredentials } from '../actions/loginForm';
 import Login from '../components/login'
 
 const mapStateToProps = (state,props) => {
@@ -10,11 +10,15 @@ const mapStateToProps = (state,props) => {
 
 const mapDispatchToProps = (dispatch, props) => ({
 
-	formSubmit: (formData) => {
+	signInFormSubmit: (formData) => {
 		let username = formData['username']
 		let password = formData['password']
-		dispatch(loginCreditential(username,password));
+		dispatch(signinCreditential(username,password));
 	},
+
+	signUpFormSubmit: (formData) => {
+		dispatch(signupCredentials(formData));
+	}
 
 })
 

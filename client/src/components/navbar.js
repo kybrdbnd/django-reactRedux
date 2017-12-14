@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Nav } from 'react-bootstrap';
+import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 class AppNavbar extends Component{
 	render(){
@@ -12,11 +12,13 @@ class AppNavbar extends Component{
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav pullRight>
-			      	<LinkContainer to="/about">
-			        <NavItem eventKey={1}>About</NavItem>
-			        </LinkContainer>
+			      	<NavDropdown eventKey={1} title="Partner With Us" id="basic-nav-dropdown">
+				        <MenuItem eventKey={1.1}>Register as a Service Provider</MenuItem>
+				        <MenuItem divider />
+				        <MenuItem eventKey={1.2}>Claim a Business Listing</MenuItem>
+				      </NavDropdown>
 			        <LinkContainer to="/login">
-			        <NavItem eventKey={2}>Login</NavItem>
+			        <NavItem eventKey={2}>SignUp</NavItem>
 			        </LinkContainer>
 			      </Nav>
     			</Navbar.Collapse>

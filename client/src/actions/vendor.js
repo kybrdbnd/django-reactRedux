@@ -11,7 +11,11 @@ export function getVendorDetail() {
                 headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') },
             })
             .then(res => {
-                return (dispatch(vendorDetailSuccess(res.data[0])))
+                if (res.data.length !== 0) {
+                    return (dispatch(vendorDetailSuccess(res.data[0])))
+                }else{
+                    dispatch(push('/company-landing-steps'))
+                }
             })
             .catch(error => {
                 console.log(error)
@@ -50,7 +54,7 @@ export function updatePackage(package_form_data) {
                     name: package_form_data.name,
                     description: package_form_data.description,
                     price: package_form_data.price ? package_form_data.price : 0,
-                    trial_price: package_form_data.trial_price ?  package_form_data.price : 0,
+                    trial_price: package_form_data.trial_price ? package_form_data.price : 0,
                     image: package_form_data.image
                 }
             })
@@ -106,13 +110,13 @@ export function deletePackage(package_form_data) {
     }
 }
 
-export function deletePackageSuccess(data){
+export function deletePackageSuccess(data) {
     return { type: 'PACKAGE_DELETE_SUCCESS', data }
 }
 
 export function newPackageSuccess(data) {
     return { type: 'PACKAGE_NEW_SUCCESS', data }
-    
+
 }
 export function savePackageSuccess(data) {
     return { type: 'PACKAGE_SAVE_SUCCESS', data }

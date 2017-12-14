@@ -12,6 +12,14 @@ class DateTimeModel(models.Model):
         abstract = True
 
 
+class Profile(DateTimeModel):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    phone_no = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.user.username
+
+
 class CompanyModel(DateTimeModel):
     name = models.CharField(max_length=100)
     owner = models.OneToOneField(settings.AUTH_USER_MODEL,

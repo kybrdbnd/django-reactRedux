@@ -24,8 +24,6 @@ class PackageUpdateView(APIView):
     def post(self, request, id, format=None):
         package = self.get_object(id)
         serializer = PackageDetailSerializer(package, data=request.data)
-        # import pdb
-        # pdb.set_trace()
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
