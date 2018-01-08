@@ -1,6 +1,6 @@
 # from rest_framework.decorators import api_view
 from rest_framework.views import APIView
-from .models import (PackageModel, CompanyModel)
+from .models import (Package, Company)
 # from django.shortcuts import get_object_or_404
 from django.http import Http404
 from rest_framework.response import Response
@@ -17,8 +17,8 @@ class PackageUpdateView(APIView):
 
     def get_object(self, id):
         try:
-            return PackageModel.objects.get(id=id)
-        except PackageModel.DoesNotExist:
+            return Package.objects.get(id=id)
+        except Package.DoesNotExist:
             raise Http404
 
     def post(self, request, id, format=None):
@@ -42,7 +42,7 @@ class PackageCreateView(APIView):
 
     def post(self, request, format=None):
         owner = self.request.user
-        company = CompanyModel.objects.get(owner=owner)
+        company = Company.objects.get(owner=owner)
         serializer = PackageDetailSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(company=company)

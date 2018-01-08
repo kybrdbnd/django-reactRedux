@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, ImageField
-from vendor.models import (CompanyModel, PackageModel, PackageImageModel)
+from vendor.models import (Company, Package, PackageImage, Category)
 from django.contrib.auth.models import User
 
 
@@ -61,36 +61,45 @@ class UserSerializer(ModelSerializer):
         fields = ('id', 'first_name', 'last_name', 'email', 'username')
 
 
+class CategorySerializer(ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('id', 'name')
+
+
 class CompanyListSerializer(ModelSerializer):
     class Meta:
-        model = CompanyModel
+        model = Company
         fields = ('id', 'name')
 
 
 class CompanyDetailSerializer(ModelSerializer):
     owner = UserSerializer()
+    categories = CategorySerializer(many=True)
 
     class Meta:
-        model = CompanyModel
-        fields = ('id', 'name', 'owner')
+        model = Company
+        fields = ('id', 'name', 'owner', 'categories')
 
 
 class CompanyCreateSerializer(ModelSerializer):
+    categories = CategorySerializer(many=True, required=False)
+
     class Meta:
-        model = CompanyModel
-        fields = ('name',)
+        model = Company
+        fields = ('name', 'categories')
 
 
 class PackageListSerializer(ModelSerializer):
     class Meta:
-        model = PackageModel
+        model = Package
         fields = ('id', 'name', 'description', 'price',
                   'trial_price', 'package_extra_info')
 
 
 class PackageDetailSerializer(ModelSerializer):
     class Meta:
-        model = PackageModel
+        model = Package
         fields = ('id', 'name', 'description', 'price',
                   'trial_price', 'package_extra_info')
 
@@ -99,5 +108,5 @@ class PackageImageSerializer(ModelSerializer):
     image = Base64ImageField(max_length=None, use_url=True)
 
     class Meta:
-        model = PackageImageModel
+        model = PackageImage
         fields = ("id", "image", "package")

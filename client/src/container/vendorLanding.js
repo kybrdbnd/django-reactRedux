@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { saveVendorCompany } from '../actions/vendor';
+import { saveVendorCompany, getCategories } from '../actions/vendor';
 import LandingStep from '../components/company/landingStep'
 
 
@@ -7,15 +7,20 @@ import LandingStep from '../components/company/landingStep'
 const mapStateToProps = (state, ownProps) => {
 
     return {
-        name: "prnav"
+        categories: state.vendor
     }
 }
 
 
 
 const mapDispatchToProps = dispatch => ({
-    saveCompany: (company_name) => {
-        dispatch(saveVendorCompany(company_name))
+
+	getCategories: () => {
+		dispatch(dispatch(getCategories))
+	},
+
+    saveCompany: (company_details) => {
+        dispatch(saveVendorCompany(company_details))
     }
 })
 

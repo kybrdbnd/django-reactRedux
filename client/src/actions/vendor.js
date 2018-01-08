@@ -1,17 +1,15 @@
 import axios from 'axios';
-import { vendor_company, company_packages, package_edit, package_create, company_create } from '../api_urls';
+import { vendor_company, company_packages, package_edit, package_create, company_create, get_categories } from '../api_urls';
 import { push } from 'react-router-redux'
 
 
-export function saveVendorCompany(company_name) {
+export function saveVendorCompany(company_details) {
     return (dispatch) => {
         axios({
                 method: 'POST',
                 url: company_create,
                 headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') },
-                data : {
-                    name: company_name
-                }
+                data : company_details
             })
             .then(res => {
                 dispatch(push('/company'))
@@ -129,6 +127,22 @@ export function deletePackage(package_form_data) {
     }
 }
 
+
+export function getCategories(){
+    return (dispatch) => {
+        axios({
+            method: 'get',
+            url: get_categories
+        })
+        .then(res => {
+            return (dispatch(getCategorySuccess(res.data)))
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
 export function deletePackageSuccess(data) {
     return { type: 'PACKAGE_DELETE_SUCCESS', data }
 }
@@ -146,4 +160,8 @@ export function packageSuccess(packages) {
 
 export function vendorDetailSuccess(details) {
     return { type: 'VENDOR_DETAIL_SUCCESS', details }
+}
+
+export function getCategorySuccess(data){
+    return { type: 'CATEGORIES_GET_SUCCESS', data}
 }

@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col ,FormControl,ControlLabel,FormGroup, Button} from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
+
 
 class LandingStep extends Component{
 
 	constructor(props){
 		super(props)
 		this.state = {
-			company_name: ""
+			company_name: "",
+			categories: ""
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.landingFormSubmit = this.landingFormSubmit.bind(this);
+		this.selectCategory = this.selectCategory.bind(this)
 	}
 
 	handleChange(e){
@@ -20,12 +26,39 @@ class LandingStep extends Component{
 		this.setState({[name]: value})
 	}
 
-	landingFormSubmit(e){
-		e.preventDefault();
-		this.props.saveCompany(this.state.company_name)
+	componentDidMount(){
+		this.props.getCategories()
 	}
 
+	landingFormSubmit(e){
+		e.preventDefault();
+		let categories_list = this.state.categories.split(',')
+		let company_detail = {
+			'name': this.state.company_name,
+			'categories': categories_list
+		}
+		this.props.saveCompany(company_detail)
+	}
+
+	
+	companyCategories(){
+		let categories = []
+		this.props.categories.map((category)=>{
+				category = {
+					'value': category.name,
+					'label': category.name
+				}
+				categories.push(category)
+		})
+		return categories
+	}
+
+	selectCategory(val){
+		this.setState({categories:val})
+	}
+	
 	renderLandingSteps(){
+
 		let landingSteps = 
 			<form onSubmit={this.landingFormSubmit}>
 				<FormGroup>
@@ -38,6 +71,19 @@ class LandingStep extends Component{
 			      				value={this.state.company_name}
 			      				onChange={this.handleChange}
 			    			/>
+	    				</Col>
+	    			</Row>
+	    			<Row>
+	    				<Col md={4}>
+	    					<Select
+	    					multi
+							  options={this.companyCategories()}
+							    value={this.state.categories}
+							    onChange={this.selectCategory}
+							    simpleValue
+							    placeholder="Choose Your Categories"
+							    closeOnSelect={false}
+							/>
 	    				</Col>
 	    			</Row>
 					<Row>

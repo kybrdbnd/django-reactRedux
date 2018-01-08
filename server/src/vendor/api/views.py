@@ -1,24 +1,30 @@
 from rest_framework.permissions import AllowAny
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.views import APIView
-from vendor.models import (CompanyModel, PackageModel)
+from vendor.models import (Company, Package, Category)
 from django.shortcuts import get_object_or_404
 from .serializers import (CompanyDetailSerializer, CompanyListSerializer,
                           PackageListSerializer, PackageDetailSerializer,
-                          UserSerializer, CompanyCreateSerializer)
+                          UserSerializer, CompanyCreateSerializer,
+                          CategorySerializer)
 from django.contrib.auth.models import User
 from random import choice
 from string import ascii_lowercase, digits
-from django.contrib.auth import authenticate, login
 from rest_framework.response import Response
 from rest_framework import status
 import requests
 import json
 
 
+class CategoryListView(ListAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+
+
 class CompanyListView(ListAPIView):
     permission_classes = (AllowAny,)
-    queryset = CompanyModel.objects.all()
+    queryset = Company.objects.all()
     serializer_class = CompanyListSerializer
 
 
@@ -27,7 +33,7 @@ class CompanyDetailView(ListAPIView):
 
     def get_queryset(self, *args, **kwargs):
         owner = self.request.user
-        company = CompanyModel.objects.filter(owner=owner)
+        company = Company.objects.filter(owner=owner)
         return company
 
 
@@ -36,13 +42,13 @@ class PackageListView(ListAPIView):
 
     def get_queryset(self, *args, **kwargs):
         owner = self.request.user
-        company = get_object_or_404(CompanyModel, owner=owner)
-        packages = PackageModel.objects.filter(company=company)
+        company = get_object_or_404(Company, owner=owner)
+        packages = Package.objects.filter(company=company)
         return packages
 
 
 class PackageDetailView(RetrieveAPIView):
-    queryset = PackageModel.objects.all()
+    queryset = Package.objects.all()
     serializer_class = PackageDetailSerializer
 
 
@@ -108,9 +114,13 @@ class UserCreateView(APIView):
 
 class CompanyCreateView(APIView):
     def post(self, request, format=None):
+        categories = request.data.pop('categories')
         serializer = CompanyCreateSerializer(data=request.data)
         owner = User.objects.get(username=request.user.username)
         if serializer.is_valid():
-            serializer.save(owner=owner)
+            company = serializer.save(owner=owner)
+            for category in categories:
+                category = Category.objects.get(name=category)
+                company.categories.add(category)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
