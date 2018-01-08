@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Base64ImageField(ImageField):
     """
-    A Django REST framework field for handling image-uploads through 
+    A Django REST framework field for handling image-uploads through
     raw post data.
     It uses base64 for encoding and decoding the contents of the file.
 
@@ -73,6 +73,12 @@ class CompanyDetailSerializer(ModelSerializer):
     class Meta:
         model = CompanyModel
         fields = ('id', 'name', 'owner')
+
+
+class CompanyCreateSerializer(ModelSerializer):
+    class Meta:
+        model = CompanyModel
+        fields = ('name',)
 
 
 class PackageListSerializer(ModelSerializer):

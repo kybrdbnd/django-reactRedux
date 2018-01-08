@@ -5,7 +5,7 @@ from vendor.models import (CompanyModel, PackageModel)
 from django.shortcuts import get_object_or_404
 from .serializers import (CompanyDetailSerializer, CompanyListSerializer,
                           PackageListSerializer, PackageDetailSerializer,
-                          UserSerializer)
+                          UserSerializer, CompanyCreateSerializer)
 from django.contrib.auth.models import User
 from random import choice
 from string import ascii_lowercase, digits
@@ -104,3 +104,13 @@ class UserCreateView(APIView):
         else:
             return Response(json.dumps({'message': 'u failed'}),
                             status=status.HTTP_400_BAD_REQUEST)
+
+
+class CompanyCreateView(APIView):
+    def post(self, request, format=None):
+        serializer = CompanyCreateSerializer(data=request.data)
+        owner = User.objects.get(username=request.user.username)
+        if serializer.is_valid():
+            serializer.save(owner=owner)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

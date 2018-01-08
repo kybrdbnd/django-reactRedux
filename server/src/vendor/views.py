@@ -4,7 +4,7 @@ from .models import (PackageModel, CompanyModel)
 # from django.shortcuts import get_object_or_404
 from django.http import Http404
 from rest_framework.response import Response
-from .api.serializers import (PackageDetailSerializer, PackageImageSerializer)
+from .api.serializers import (PackageDetailSerializer)
 from rest_framework import status
 from rest_framework.parsers import (JSONParser,
                                     FormParser, MultiPartParser)
