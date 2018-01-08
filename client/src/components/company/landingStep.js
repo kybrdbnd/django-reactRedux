@@ -22,7 +22,7 @@ class LandingStep extends Component{
 
 	landingFormSubmit(e){
 		e.preventDefault();
-		console.log('about to be submitted')
+		this.props.saveCompany(this.state.company_name)
 	}
 
 	renderLandingSteps(){

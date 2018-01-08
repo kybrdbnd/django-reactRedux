@@ -4,9 +4,9 @@ import {Router, Route, browserHistory} from 'react-router';
 import App from './App';
 import About from './components/about';
 import VendorLogin from './container/validLogin';
-import { VendorDashboard } from './container/vendorDashboard';
+import VendorDashboard  from './container/vendorDashboard';
 import VendorPackages from './container/vendorPackages';
-import LandingStep from './components/company/landingStep'
+import VendorLanding  from './container/vendorLanding';
 
 
 class AppRoutes extends Component{
@@ -18,7 +18,7 @@ class AppRoutes extends Component{
 		        <Route path="/login" component={VendorLogin}/>
 		        <Route path="/company" component={VendorDashboard}/>
 		        <Route path="/packages" component={VendorPackages}/>
-		        <Route path="/company-landing-steps" component={LandingStep}/>
+		        <Route path="/company-landing-steps" component={VendorLanding}/>
 		    </Router>
 			)
 	}

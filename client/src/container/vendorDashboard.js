@@ -27,4 +27,4 @@ const VendorDashboard = connect(
 )(Dashboard)
 
 
-export {VendorDashboard}
+export default VendorDashboard

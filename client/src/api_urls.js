@@ -2,6 +2,7 @@ export const fetch_companies = "http://localhost:8000/api/companies/"
 export const signin_url = 'http://localhost:8000/api-token-auth/';
 export const signup_url = 'http://localhost:8000/api/user_create/';
 export const vendor_company = 'http://localhost:8000/api/vendor_company/'
+export const company_create = 'http://localhost:8000/api/company_create/'
 export const company_packages = 'http://localhost:8000/api/packages/'
 export const package_detail = 'http://localhost:8000/api/package-detail/'
 export const package_edit = 'http://localhost:8000/vendor/edit_package/'

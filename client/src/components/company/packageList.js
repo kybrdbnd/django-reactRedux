@@ -15,7 +15,6 @@ class PackageList extends Component{
 			openPackageModel: false
 		}
 		this.handleChange = this.handleChange.bind(this)
-		this.packageUpdate = this.packageUpdate.bind(this)
 		this.close = this.close.bind(this)
 	}
 
@@ -23,10 +22,7 @@ class PackageList extends Component{
 		this.props.delete(package_delete)
 	}
 
-	packageUpdate(e){
-		// this.props.update(package_update)
-	}
-	
+
 	close(){
 		this.setState({openPackageModel: false})
 	}
@@ -49,7 +45,7 @@ class PackageList extends Component{
 		const packages = this.props.packages.map((c_package) => 
 		        <Col md={4} key={c_package.id}>
 		        	<Thumbnail src="/assets/thumbnaildiv.png" alt="242x200">
-		            	<h3>{c_package.title}</h3>
+		            	<h3>{c_package.name}</h3>
 		            	<p>{c_package.description}</p>
 		           		<p>
 		            		<Button onClick={this.getSelectedPackage.bind(this,c_package.id)}>Edit</Button>

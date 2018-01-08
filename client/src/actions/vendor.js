@@ -1,7 +1,26 @@
 import axios from 'axios';
-import { vendor_company, company_packages, package_edit, package_create } from '../api_urls';
+import { vendor_company, company_packages, package_edit, package_create, company_create } from '../api_urls';
 import { push } from 'react-router-redux'
 
+
+export function saveVendorCompany(company_name) {
+    return (dispatch) => {
+        axios({
+                method: 'POST',
+                url: company_create,
+                headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') },
+                data : {
+                    name: company_name
+                }
+            })
+            .then(res => {
+                dispatch(push('/company'))
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
 
 export function getVendorDetail() {
     return (dispatch) => {
@@ -13,7 +32,7 @@ export function getVendorDetail() {
             .then(res => {
                 if (res.data.length !== 0) {
                     return (dispatch(vendorDetailSuccess(res.data[0])))
-                }else{
+                } else {
                     dispatch(push('/company-landing-steps'))
                 }
             })
