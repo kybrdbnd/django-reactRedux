@@ -4,11 +4,10 @@ import {Router, Route, browserHistory} from 'react-router';
 import App from './App';
 import VendorLogin from './container/validLogin';
 import VendorDashboard  from './container/vendorDashboard';
-import VendorPackages from './container/vendorPackages';
+import VendorPackage from './container/vendorPackage';
 import VendorLanding  from './container/vendorLanding';
-import Message  from './components/company/message';
-import Review  from './components/company/review';
-
+import VendorMessage  from './container/vendorMessage';
+import VendorReview  from './container/vendorReview';
 
 class AppRoutes extends Component{
 	render(){
@@ -17,9 +16,9 @@ class AppRoutes extends Component{
 		        <Route path="/" component={App}/>
 		        <Route path="/login" component={VendorLogin}/>
 		        <Route path="/company" component={VendorDashboard}/>
-		        <Route path="/packages" component={VendorPackages}/>
-		        <Route path="/messages" component={Message}/>
-		        <Route path="/reviews" component={Review}/>
+		        <Route path="/packages" component={VendorPackage}/>
+		        <Route path="/messages" component={VendorMessage}/>
+		        <Route path="/reviews" component={VendorReview}/>
 		        <Route path="/company-landing-steps" component={VendorLanding}/>
 		    </Router>
 			)

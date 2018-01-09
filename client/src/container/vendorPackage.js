@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { getPackages, deletePackage, createPackage,updatePackage } from '../actions/vendor';
 import Package from '../components/company/package';
 
-
 const mapStateToProps = (state,ownProps) => {
 
 	return {
@@ -30,10 +29,10 @@ const mapDispatchToProps = dispatch => ({
 
 })
 
-const VendorPackages = connect(
+const VendorPackage = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(Package)
 
 
-export default VendorPackages
+export default VendorPackage

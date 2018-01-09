@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from './sidebar'
+import {Grid} from 'react-bootstrap';
 
 class Dashboard extends Component{
 
@@ -16,8 +17,9 @@ class Dashboard extends Component{
 
 	render(){
 		return (
-				<div className="main_content">
+					<div>
 					<Sidebar/>
+					<Grid>
 					<h1>{this.props.details['name']}</h1>
 					{this.props.details['owner'] == null ? '' :
 						<div>
@@ -25,7 +27,8 @@ class Dashboard extends Component{
 							<ul>{this.companyCategories()}</ul>
 						</div>
 					}
-				</div>
+					</Grid>
+					</div>
 		
 			)
 	}

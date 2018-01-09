@@ -3,7 +3,6 @@ import Sidebar from './sidebar';
 import {Grid, Button, Row, Thumbnail, Col, Modal, FormGroup, FormControl} from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
-
 class Message extends Component {
 
 	constructor(props){
@@ -86,7 +85,6 @@ class Message extends Component {
 
 	renderMessages(){
 		let messageBlock = 
-					<Grid>
 						<Row>
 							<Col xs={6} md={4}>
 								<Thumbnail>
@@ -122,16 +120,18 @@ class Message extends Component {
 								</Thumbnail>
 							</Col>
 						</Row>
-					</Grid>
+					
 			return messageBlock
 	}
 
 	render(){
 		return (
-				<div className="main_content">
+				<div>
 					<Sidebar/>
-					{this.renderMessages()}
-					{this.renderReplyDialog()}
+					<Grid>
+						{this.renderMessages()}
+						{this.renderReplyDialog()}
+					</Grid>
 				</div>
 			)
 	}
