@@ -43,13 +43,12 @@ class LandingStep extends Component{
 	
 	companyCategories(){
 		let categories = []
-		this.props.categories.map((category)=>{
-				category = {
+		this.props.categories.map((category)=>
+				categories.push({
 					'value': category.name,
 					'label': category.name
-				}
-				categories.push(category)
-		})
+				})
+		)
 		return categories
 	}
 

@@ -26,6 +26,8 @@ class Sidebar extends Component{
       <Nav pullRight>
       	<LinkContainer to="/company"><NavItem eventKey={1}>Home</NavItem></LinkContainer>
       	<LinkContainer to="/packages"><NavItem eventKey={2}>Packages</NavItem></LinkContainer>
+          <LinkContainer to="/messages"><NavItem eventKey={3}>Messages</NavItem></LinkContainer>
+        <LinkContainer to="/reviews"><NavItem eventKey={4}>Reviews</NavItem></LinkContainer>
         <NavItem onClick={this.logout} eventKey={3}>Logout</NavItem>
       </Nav>
     </Navbar.Collapse>
