@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { saveVendorCompany, getCategories } from '../actions/vendor';
-import LandingStep from '../components/company/landingStep'
+import { saveVendorCompany, getCategories } from '../../actions/vendor';
+import LandingStep from '../../components/company/landingStep'
 
 
 

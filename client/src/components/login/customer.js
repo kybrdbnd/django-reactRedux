@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col ,FormControl,ControlLabel,FormGroup, Button,Tabs, Tab} from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-class Login extends Component{
+class Customer extends Component{
 
 	constructor(props){
 		super(props)
@@ -40,7 +40,10 @@ class Login extends Component{
 										last_name: this.state.last_name, 
 										email: this.state.email,
 										phone_number: this.state.phone_number,
-										signup_password: this.state.signup_password});
+										signup_password: this.state.signup_password,
+										user: "customer",
+										next_url: "/profile"
+										});
 		}else{
 			console.log('Check Password')
 		}
@@ -178,4 +181,4 @@ class Login extends Component{
 	}
 }
 
-export default Login;
+export default Customer;

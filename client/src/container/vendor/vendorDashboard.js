@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { getVendorDetail } from '../actions/vendor';
-import Dashboard from '../components/company/dashboard';
+import { getVendorDetail } from '../../actions/vendor';
+import Dashboard from '../../components/company/dashboard';
 
 
 

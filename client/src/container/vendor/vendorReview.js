@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Review  from '../components/company/review';
+import Review  from '../../components/company/review';
 
 const VendorReview = connect()(Review)
 

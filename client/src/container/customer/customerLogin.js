@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { signinCreditential, signupCredentials } from '../actions/loginForm';
-import Login from '../components/login'
+import { signinCreditential, signupCredentials } from '../../actions/loginForm';
+import Customer from '../../components/login/customer'
 
 const mapStateToProps = (state,props) => {
 	return{
@@ -22,9 +22,9 @@ const mapDispatchToProps = (dispatch, props) => ({
 
 })
 
-const VendorLogin = connect(
+const CustomerLogin = connect(
 	mapStateToProps,
 	mapDispatchToProps
-	)(Login)
+	)(Customer)
 
-export default VendorLogin;
+export default CustomerLogin;

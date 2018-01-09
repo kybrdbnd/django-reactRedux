@@ -24,6 +24,7 @@ export function signinCreditential(username, password) {
 }
 
 export function signupCredentials(formData) {
+    let next_url = formData.next_url
     return (dispatch) => {
         axios({
                 method: 'post',
@@ -39,7 +40,7 @@ export function signupCredentials(formData) {
             .then(res => {
                 localStorage.setItem('token', res.data['token'])
                 dispatch(signupSuccess(res.data['token']))
-                dispatch(push('/company'))
+                dispatch(push(next_url))
             })
             .catch(function(error) {
                 console.log(error)

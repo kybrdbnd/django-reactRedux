@@ -13,11 +13,15 @@ class AppNavbar extends Component{
 			    <Navbar.Collapse>
 			      <Nav pullRight>
 			      	<NavDropdown eventKey={1} title="Partner With Us" id="basic-nav-dropdown">
-				        <MenuItem eventKey={1.1}>Register as a Service Provider</MenuItem>
+				        <LinkContainer to="/vendor_login">
+				        	<MenuItem eventKey={1.1}>
+				        		Register as a Service Provider
+				        	</MenuItem>
+				        </LinkContainer>
 				        <MenuItem divider />
 				        <MenuItem eventKey={1.2}>Claim a Business Listing</MenuItem>
 				      </NavDropdown>
-			        <LinkContainer to="/login">
+			        <LinkContainer to="/customer_login">
 			        <NavItem eventKey={2}>SignUp</NavItem>
 			        </LinkContainer>
 			      </Nav>

@@ -36,7 +36,7 @@ export function getVendorDetail() {
             })
             .catch(error => {
                 console.log(error)
-                dispatch(push('/login'))
+                dispatch(push('/vendor_login'))
 
             });
     }
@@ -55,7 +55,7 @@ export function getPackages() {
             })
             .catch(error => {
                 console.log(error)
-                dispatch(push('/login'))
+                dispatch(push('/vendor_login'))
 
             });
     }
