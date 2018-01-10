@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import (CompanyListView, CompanyDetailView,
                     PackageListView, PackageDetailView,
-                    UserDetailView, UserCreateView,
+                    UserDetailView,
                     CompanyCreateView, CategoryListView)
 
 urlpatterns = [
@@ -13,8 +13,6 @@ urlpatterns = [
         name='package_list'),
     url(r'package-detail/(?P<pk>\d+)', PackageDetailView.as_view(),
         name='package_detail'),
-    url(r'user_create/', UserCreateView.as_view(),
-        name='user_create'),
     url(r'company_create/', CompanyCreateView.as_view(),
         name='company_create'),
     url(r'get_categories/', CategoryListView.as_view(),

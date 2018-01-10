@@ -41,6 +41,7 @@ class Vendor extends Component{
 										email: this.state.email,
 										phone_number: this.state.phone_number,
 										signup_password: this.state.signup_password,
+										user_type: "vendor",
 										next_url: "/company"});
 		}else{
 			console.log('Check Password')

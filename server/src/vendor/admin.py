@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Company, Package, Profile)
+from .models import (Company, Package)
 
 
 class CompanyAdmin(admin.ModelAdmin):
@@ -13,10 +13,5 @@ class PackageAdmin(admin.ModelAdmin):
                     'created_at', 'updated_at']
 
 
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'phone_no']
-
-
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(Package, PackageAdmin)
-admin.site.register(Profile, ProfileAdmin)

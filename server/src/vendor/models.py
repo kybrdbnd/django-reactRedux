@@ -12,14 +12,6 @@ class DateTime(models.Model):
         abstract = True
 
 
-class Profile(DateTime):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    phone_no = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.user.username
-
-
 class Category(DateTime):
     name = models.CharField(max_length=100)
 

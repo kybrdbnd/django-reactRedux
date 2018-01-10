@@ -2,3 +2,8 @@
 server/src/vendor/migrations/
 server/src/vendor/__pycache__/
 server/src/vendor/api/__pycache__/
+server/src/customer/api/__pycache__/
+server/src/customer/__pycache__/
+server/src/common/api/__pycache__/
+server/src/common/__pycache__/
+server/src/config/__pycache__/

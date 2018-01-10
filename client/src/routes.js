@@ -10,6 +10,7 @@ import VendorMessage  from './container/vendor/vendorMessage';
 import VendorReview  from './container/vendor/vendorReview';
 import CustomerLogin from './container/customer/customerLogin';
 import CustomerProfile  from './container/customer/customerProfile';
+import CustomerLanding from './container/customer/customerLanding';
 
 class AppRoutes extends Component{
 	render(){
@@ -23,6 +24,7 @@ class AppRoutes extends Component{
 		        <Route path="/messages" component={VendorMessage}/>
 		        <Route path="/reviews" component={VendorReview}/>
 		        <Route path="/company-landing-steps" component={VendorLanding}/>
+		        <Route path="/customer-landing-steps" component={CustomerLanding}/>
 		        <Route path="/profile" component={CustomerProfile}/>
 		    </Router>
 			)

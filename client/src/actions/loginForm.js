@@ -15,7 +15,7 @@ export function signinCreditential(username, password) {
             .then(res => {
                 dispatch(signinSuccess(res.data['token']))
                 localStorage.setItem('token', res.data['token'])
-                dispatch(push('/company'))
+                dispatch(push('/profile'))
             })
             .catch(function(error) {
                 console.log(error)
@@ -34,7 +34,8 @@ export function signupCredentials(formData) {
                     last_name: formData.last_name,
                     email: formData.email,
                     phone_number: formData.phone_number,
-                    password: formData.signup_password
+                    password: formData.signup_password,
+                    user: formData.user_type
                 }
             })
             .then(res => {

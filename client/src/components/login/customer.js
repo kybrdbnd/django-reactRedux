@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col ,FormControl,ControlLabel,FormGroup, Button,Tabs, Tab} from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
+
 class Customer extends Component{
 
 	constructor(props){
@@ -41,7 +42,7 @@ class Customer extends Component{
 										email: this.state.email,
 										phone_number: this.state.phone_number,
 										signup_password: this.state.signup_password,
-										user: "customer",
+										user_type: "customer",
 										next_url: "/profile"
 										});
 		}else{

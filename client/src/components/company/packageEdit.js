@@ -34,43 +34,41 @@ class PackageEdit extends Component{
 
 	render(){
 		return (
-			<Row>
+			<Grid>
 				<Modal.Header>
 					<Modal.Title>
 						{this.props.name}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Grid>
-						<form>
-							<FormGroup>
-								<Row>
-									<Col md={4}>
-				          				<ControlLabel htmlFor="name">Name</ControlLabel>
-										<FormControl id="name" name="name" type="text" value={this.props.package.name} onChange={this.handleChange}/>
-				          			</Col>
-			          			</Row>
-								<Row>
-				          			<Col md={4}>
-				          				<ControlLabel htmlFor="description">Description</ControlLabel>
-								 		<FormControl id="description" name="description" type="text" value={this.props.package.description} onChange={this.handleChange}/>
-				          			</Col>
-			          			</Row>
-								<Row>
-				          			<Col md={4}>
-				          				<ControlLabel htmlFor="price">Price</ControlLabel>
-								 		<FormControl id="price" name="price" type="text" value={this.props.package.price} onChange={this.handleChange}/>
-				          			</Col>
-			          			</Row>
-			          		</FormGroup>
-						</form>
-					</Grid>
+					<form>
+						<FormGroup>
+							<Row>
+								<Col md={4}>
+			          				<ControlLabel htmlFor="name">Name</ControlLabel>
+									<FormControl id="name" name="name" type="text" value={this.props.package.name} onChange={this.handleChange}/>
+			          			</Col>
+		          			</Row>
+							<Row>
+			          			<Col md={4}>
+			          				<ControlLabel htmlFor="description">Description</ControlLabel>
+							 		<FormControl id="description" name="description" type="text" value={this.props.package.description} onChange={this.handleChange}/>
+			          			</Col>
+		          			</Row>
+							<Row>
+			          			<Col md={4}>
+			          				<ControlLabel htmlFor="price">Price</ControlLabel>
+							 		<FormControl id="price" name="price" type="text" value={this.props.package.price} onChange={this.handleChange}/>
+			          			</Col>
+		          			</Row>
+		          		</FormGroup>
+					</form>
 				</Modal.Body>
 				<Modal.Footer>
 			    	<Button onClick={this.packageAction.bind(this,this.state.selected_package)}>Save</Button>
 			    	<Button onClick={this.props.close}>Cancel</Button>
 				</Modal.Footer>
-			</Row>
+			</Grid>
 			)
 	}
 }

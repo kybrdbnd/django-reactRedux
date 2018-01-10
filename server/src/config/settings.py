@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # my apps
-    'vendor.apps.VendorConfig'
+    'vendor.apps.VendorConfig',
+    'common.apps.CommonConfig',
+    'customer.apps.CustomerConfig',
 ]
 
 SITE_ID = 1

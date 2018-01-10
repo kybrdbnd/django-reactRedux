@@ -19,7 +19,9 @@ from rest_framework_jwt.views import (obtain_jwt_token, verify_jwt_token)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include('vendor.api.urls')),
+    url(r'^vendor-api/', include('vendor.api.urls')),
+    url(r'^customer-api/', include('customer.api.urls')),
+    url(r'^api/', include('common.api.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^vendor/', include('vendor.urls', namespace="vendor")),
     url(r'^api-token-auth/', obtain_jwt_token),
