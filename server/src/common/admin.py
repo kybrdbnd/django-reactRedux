@@ -4,7 +4,13 @@ from .models import (Profile)
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'user_type')
+    list_display = ('name', 'user_type')
+
+    def name(self, obj):
+        if obj.user_type == 'V':
+            return obj.user.company.name
+        else:
+            return obj.user.username
 
 
 admin.site.register(Profile, ProfileAdmin)

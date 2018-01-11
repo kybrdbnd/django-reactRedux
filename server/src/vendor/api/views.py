@@ -10,6 +10,7 @@ from .serializers import (CompanyDetailSerializer, CompanyListSerializer,
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework import status
+from common.models import Profile
 
 
 class CategoryListView(ListAPIView):
@@ -66,5 +67,9 @@ class CompanyCreateView(APIView):
             for category in categories:
                 category = Category.objects.get(name=category)
                 company.categories.add(category)
+            profile = Profile.objects.create(user=owner,
+                                             user_type='V',
+                                             extra_info={"company_name": company.name})
+            profile.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

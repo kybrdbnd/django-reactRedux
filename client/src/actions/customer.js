@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { customer_detail, update_customer_username } from '../api_urls';
+import { customer_detail, customer_landing } from '../api_urls';
 import { push } from 'react-router-redux'
 
 
@@ -27,15 +27,13 @@ export function getCustomerDetail() {
 
 
 
-export function updateCustomerUsername(username) {
+export function CustomerLandingStep(form_data) {
     return (dispatch) => {
         axios({
                 method: 'POST',
-                url: update_customer_username,
+                url: customer_landing,
                 headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') },
-                data: {
-                    username: username
-                },
+                data: form_data
             })
             .then(res => {
                 localStorage.clear();

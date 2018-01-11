@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-# from django.contrib.postgres.fields import JSONField
+from django.contrib.postgres.fields import JSONField
 # Create your models here.
 
 
@@ -13,6 +13,7 @@ class DateTime(models.Model):
 
 
 class Profile(DateTime):
+
     VENDOR = 'V'
     CUSTOMER = 'C'
     TYPE_PROFILE_CHOICES = (
@@ -25,4 +26,12 @@ class Profile(DateTime):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
 
     def __str__(self):
-        return self.user.username
+        if self.user_type == 'V':
+            return self.user.company.name
+        else:
+            return self.user.username
+
+    def default_extra_info():
+        return {"default": "default"}
+
+    extra_info = JSONField(default=default_extra_info)

@@ -13,7 +13,7 @@ class ProfileForm extends Component {
 			last_name: props.details['last_name'],
 			email: props.details['email'],
 			username: props.details['username'],
-			age: ""
+			age: props.details['profile']['extra_info']['age']
 		}
 		this.handleChange = this.handleChange.bind(this)
 	}
@@ -29,18 +29,12 @@ class ProfileForm extends Component {
 	renderProfileForm(){
 		let formData = 
 			<form>
+				<Row>
+					<Col md={4}>
+						<h3>Username:</h3> {this.state.username}
+					</Col>
+				</Row>
 				<FormGroup>
-					<Row>
-						<Col md={4}>
-							<ControlLabel htmlFor="username">Username:</ControlLabel>			
-							<FormControl
-			      				type="text" 
-			      				name="username" 
-			      				value={this.state.username}
-			      				onChange={this.handleChange}
-			    			/>
-						</Col>
-					</Row>
 					<Row>
 						<Col md={4}>
 							<ControlLabel htmlFor="first_name">First Name:</ControlLabel>			

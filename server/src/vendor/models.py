@@ -25,7 +25,7 @@ class Category(DateTime):
 class Company(DateTime):
     name = models.CharField(max_length=100)
     owner = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                 related_name='owner')
+                                 related_name='company')
     categories = models.ManyToManyField(Category, related_name='categories')
 
     class Meta:

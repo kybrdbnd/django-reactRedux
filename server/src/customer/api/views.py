@@ -7,6 +7,7 @@ from rest_framework import status
 from common.models import (Profile)
 from rest_framework_jwt.settings import api_settings
 
+
 class UserDetailView(ListAPIView):
     serializer_class = UserSerializer
 
@@ -16,7 +17,7 @@ class UserDetailView(ListAPIView):
 
 
 @api_view(['POST'])
-def update_username(request):
+def landing_step(request):
     if request.method == 'POST':
         check_user = User.objects.filter(
             username=request.data['username']).exists()
@@ -31,7 +32,10 @@ def update_username(request):
             jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
             payload = jwt_payload_handler(current_user)
             token = jwt_encode_handler(payload)
-            profile = Profile.objects.create(user=current_user, user_type='C')
+            request.data.pop('username')
+            profile = Profile.objects.create(user=current_user,
+                                             user_type='C',
+                                             extra_info=request.data)
             profile.save()
             return Response({'token': token,
                              'message': 'Profile Created Successfully'},

@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { updateCustomerUsername } from '../../actions/customer';
+import { CustomerLandingStep } from '../../actions/customer';
 import LandingStep from '../../components/customer/landingStep'
 
 
 const mapStateToProps = (state, ownProps) => {
 
     return {
-    	user: ownProps
+    	state: ownProps
     }
 }
 
@@ -14,8 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
 
-    updateUsername: (username) => {
-        dispatch(updateCustomerUsername(username))
+    landingStep: (form_data) => {
+        dispatch(CustomerLandingStep(form_data))
     }
 })
 

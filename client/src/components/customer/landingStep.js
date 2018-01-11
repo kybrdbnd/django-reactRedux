@@ -9,6 +9,7 @@ class LandingStep extends Component{
 		super(props)
 		this.state = {
 			username: "",
+			age: ""
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.landingFormSubmit = this.landingFormSubmit.bind(this);
@@ -23,7 +24,11 @@ class LandingStep extends Component{
 
 	landingFormSubmit(e){
 		e.preventDefault();
-		this.props.updateUsername(this.state.username)
+		let landing_data = {
+			"username": this.state.username,
+			"age": this.state.age
+		}
+		this.props.landingStep(landing_data)
 	}
 
 	renderLandingSteps(){
@@ -38,6 +43,17 @@ class LandingStep extends Component{
 			      				type="text" 
 			      				name="username" 
 			      				value={this.state.username}
+			      				onChange={this.handleChange}
+			    			/>
+	    				</Col>
+	    			</Row>
+	    			<Row>
+						<Col md={4}>
+			    			<ControlLabel htmlFor="age">Enter Your age:</ControlLabel>			
+							<FormControl
+			      				type="number" 
+			      				name="age" 
+			      				value={this.state.age}
 			      				onChange={this.handleChange}
 			    			/>
 	    				</Col>
