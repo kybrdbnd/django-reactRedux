@@ -8,6 +8,6 @@ export const package_create = 'http://localhost:8000/vendor/package_create/'
 export const package_delete = 'http://localhost:8000/vendor/edit_package/'
 export const get_categories = 'http://localhost:8000/vendor-api/get_categories'
 export const signup_url = 'http://localhost:8000/api/user_create/';
-export const signin_url = 'http://localhost:8000/api-token-auth/';
+export const signin_url = 'http://localhost:8000/api/login/';
 export const customer_detail = 'http://localhost:8000/customer-api/profile/'
 export const update_customer_username = 'http://localhost:8000/customer-api/update_username/'

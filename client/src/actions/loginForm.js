@@ -15,7 +15,7 @@ export function signinCreditential(username, password) {
             .then(res => {
                 dispatch(signinSuccess(res.data['token']))
                 localStorage.setItem('token', res.data['token'])
-                dispatch(push('/profile'))
+                dispatch(push(res.data['next_url']))
             })
             .catch(function(error) {
                 console.log(error)

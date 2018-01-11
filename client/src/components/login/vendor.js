@@ -6,7 +6,6 @@ class Vendor extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			username: "",
 			password: "",
 			first_name: "",
 			last_name: "",
@@ -16,7 +15,6 @@ class Vendor extends Component{
 			confirm_password:""
 		}
 		this.handleChange = this.handleChange.bind(this);
-		this._signInFormSubmit = this._signInFormSubmit.bind(this);
 		this._signUpFormSubmit = this._signUpFormSubmit.bind(this);
 
 	}
@@ -26,11 +24,6 @@ class Vendor extends Component{
 		let name = e.target.name
 		let value = e.target.value
 		this.setState({[name]: value})
-	}
-
-	_signInFormSubmit(e){
-		e.preventDefault();
-		this.props.signInFormSubmit({username:this.state.username, password: this.state.password});
 	}
 
 	_signUpFormSubmit(e){
@@ -128,51 +121,11 @@ class Vendor extends Component{
 			return formData
 	}
 
-	renderSigninForm(){
-		let formData = 
-			<form onSubmit={this._signInFormSubmit}>
-				<FormGroup>
-					<Row>
-						<Col md={4}>
-			    			<ControlLabel htmlFor="username">Enter Your Username</ControlLabel>			
-							<FormControl
-			      				type="text" 
-			      				name="username" 
-			      				value={this.state.username}
-			      				onChange={this.handleChange}
-			    			/>
-	    				</Col>
-	    			</Row>
-					<Row>
-						<Col md={4}>
-			    			<ControlLabel htmlFor="password">Enter Your Password </ControlLabel>
-							<FormControl
-			      				type="password" 
-			      				name="password" 
-			      				value={this.state.password} 
-			      				onChange={this.handleChange}
-			    			/>
-						</Col>
-					</Row>
-					<Row>
-						<Col md={2}>
-						 	<Button bsStyle="primary" type="submit">Submit
-							<FontAwesome
-        						name='paper-plane'
-        						/>
-							</Button>
-						</Col>
-					</Row>
-				</FormGroup>
-			</form>
-			return formData
-	}
 	render(){
 		return(
 				<Grid>
 					<Tabs defaultActiveKey={1} id="uncontrolled-tab">
 					    <Tab eventKey={1} title="SignUp">{ this.renderSignupForm() }</Tab>
-					    <Tab eventKey={2} title="SignIn">{ this.renderSigninForm() }</Tab>
 					</Tabs>
 				</Grid>
 			
