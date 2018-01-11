@@ -38,7 +38,9 @@ export function updateCustomerUsername(username) {
                 },
             })
             .then(res => {
-               dispatch(push('/profile'))
+                localStorage.clear();
+                localStorage.setItem('token', res.data['token'])
+                dispatch(push('/profile'))
             })
             .catch(error => {
                 console.log(error.response.data)

@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-
+from rest_framework_jwt.settings import api_settings
 
 def generate_random_username(length=8, chars=ascii_lowercase + digits, split=4, delimiter='-'):
 
@@ -58,11 +58,10 @@ class UserCreateView(APIView):
                                         email=request.data['email'])
         user.save()
         if user is not None:
-            data = {
-                'username': user.username,
-                'password': request.data['password']
-            }
-            jwt_token = get_auth_token(request, data)
+            jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+            jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+            payload = jwt_payload_handler(user)
+            jwt_token = jwt_encode_handler(payload)
             return Response({'token': jwt_token},
                             status=status.HTTP_201_CREATED)
         else:
