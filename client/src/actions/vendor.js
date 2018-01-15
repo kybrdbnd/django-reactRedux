@@ -64,7 +64,7 @@ export function getPackages() {
 export function updatePackage(package_form_data) {
     return (dispatch) => {
         axios({
-                method: 'POST',
+                method: 'PUT',
                 url: package_edit + package_form_data.id + '/',
                 headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') },
                 data: {

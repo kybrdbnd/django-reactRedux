@@ -23,7 +23,6 @@ urlpatterns = [
     url(r'^customer-api/', include('customer.api.urls')),
     url(r'^api/', include('common.api.urls')),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^vendor/', include('vendor.urls', namespace="vendor")),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
 ]

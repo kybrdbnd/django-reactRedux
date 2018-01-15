@@ -34,7 +34,7 @@ class PackageEdit extends Component{
 
 	render(){
 		return (
-			<Grid>
+			<div>
 				<Modal.Header>
 					<Modal.Title>
 						{this.props.name}
@@ -44,19 +44,19 @@ class PackageEdit extends Component{
 					<form>
 						<FormGroup>
 							<Row>
-								<Col md={4}>
+								<Col md={8}>
 			          				<ControlLabel htmlFor="name">Name</ControlLabel>
 									<FormControl id="name" name="name" type="text" value={this.props.package.name} onChange={this.handleChange}/>
 			          			</Col>
 		          			</Row>
 							<Row>
-			          			<Col md={4}>
+			          			<Col md={8}>
 			          				<ControlLabel htmlFor="description">Description</ControlLabel>
 							 		<FormControl id="description" name="description" type="text" value={this.props.package.description} onChange={this.handleChange}/>
 			          			</Col>
 		          			</Row>
 							<Row>
-			          			<Col md={4}>
+			          			<Col md={8}>
 			          				<ControlLabel htmlFor="price">Price</ControlLabel>
 							 		<FormControl id="price" name="price" type="text" value={this.props.package.price} onChange={this.handleChange}/>
 			          			</Col>
@@ -68,7 +68,7 @@ class PackageEdit extends Component{
 			    	<Button onClick={this.packageAction.bind(this,this.state.selected_package)}>Save</Button>
 			    	<Button onClick={this.props.close}>Cancel</Button>
 				</Modal.Footer>
-			</Grid>
+			</div>
 			)
 	}
 }

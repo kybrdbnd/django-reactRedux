@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import (CompanyListView, CompanyDetailView,
                     PackageListView, PackageDetailView,
-                    UserDetailView,
+                    UserDetailView, PackageUpdateCreateView,
                     CompanyCreateView, CategoryListView)
 
 urlpatterns = [
@@ -17,4 +17,8 @@ urlpatterns = [
         name='company_create'),
     url(r'get_categories/', CategoryListView.as_view(),
         name='get_categories'),
+    url(r'edit_package/(?P<id>\d+)',
+        PackageUpdateCreateView.as_view(), name='edit_package'),
+    url(r'package_create/', PackageUpdateCreateView.as_view(),
+        name='package_create')
 ]
