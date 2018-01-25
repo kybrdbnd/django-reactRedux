@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer, ImageField
 from vendor.models import (Company, Package, PackageImage, Category)
 from django.contrib.auth.models import User
+from common.models import (Profile)
 
 
 class Base64ImageField(ImageField):
@@ -53,6 +54,12 @@ class Base64ImageField(ImageField):
         extension = "jpg" if extension == "jpeg" else extension
 
         return extension
+
+
+class ProfileSerializer(ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('extra_info',)
 
 
 class UserSerializer(ModelSerializer):

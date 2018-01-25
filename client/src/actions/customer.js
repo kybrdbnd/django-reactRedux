@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { customer_detail, customer_landing } from '../api_urls';
+import { customer_detail, customer_landing, profile_update} from '../api_urls';
 import { push } from 'react-router-redux'
 
 
@@ -46,6 +46,23 @@ export function CustomerLandingStep(form_data) {
     }
 }
 
+
+export function customerProfileUpdate(form_data){
+    return(dispatch) => {
+        axios({
+            method: 'PUT',
+            url: profile_update,
+            headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') },
+            data: form_data
+        })
+        .then(res=>{
+            console.log(res.data.message)
+        })
+        .catch(error=>{
+            console.log(error.response.data)
+        })
+    }
+}
 
 
 export function customerDetailSuccess(details) {

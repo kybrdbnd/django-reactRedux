@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Sidebar from './sidebar';
 import {Grid, Button, Row, Thumbnail, Col, Modal, FormGroup, FormControl, OverlayTrigger, Popover} from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
@@ -161,14 +160,11 @@ class Review extends Component {
 	}
 	render(){
 		return (
-				<div>
-					<Sidebar/>
-					<Grid>
-						{this.renderReviews()}
-						{this.renderReviewModal()}
-						{this.renderMessageModal()}
-					</Grid>
-				</div>
+				<Grid>
+					{this.renderReviews()}
+					{this.renderReviewModal()}
+					{this.renderMessageModal()}
+				</Grid>
 			)
 	}
 }

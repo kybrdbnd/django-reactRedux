@@ -14,6 +14,7 @@ class Sidebar extends Component{
 
 	render(){
 		return(
+      <div>
 			<Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
@@ -27,6 +28,8 @@ class Sidebar extends Component{
       </Nav>
     </Navbar.Collapse>
   </Navbar>
+  {this.props.children}
+  </div>
 		)
 	}
 }

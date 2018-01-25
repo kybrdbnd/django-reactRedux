@@ -13,7 +13,7 @@ class Profile extends Component {
 	render(){
 		let profileComponent;
 		if(this.props.details.length > 0 || Object.keys(this.props.details).length){
-			profileComponent = <ProfileForm details = {this.props.details}/>
+			profileComponent = <ProfileForm details = {this.props.details} updateProfile={this.props.updateCustomerProfile}/>
 		}else{
 			profileComponent = null
 		}

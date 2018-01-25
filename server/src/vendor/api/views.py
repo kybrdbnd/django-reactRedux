@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from .serializers import (CompanyDetailSerializer, CompanyListSerializer,
                           PackageListSerializer, PackageDetailSerializer,
                           UserSerializer, CompanyCreateSerializer,
-                          CategorySerializer)
+                          CategorySerializer, ProfileSerializer)
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework import status
@@ -61,6 +61,13 @@ class UserDetailView(ListAPIView):
 
 
 class CompanyCreateView(APIView):
+
+    def get_object(self, username):
+        try:
+            return User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Http404
+
     def post(self, request, format=None):
         categories = request.data.pop('categories')
         serializer = CompanyCreateSerializer(data=request.data)
@@ -76,6 +83,14 @@ class CompanyCreateView(APIView):
             profile.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, format=None):
+        owner = self.get_object(request.user.username)
+        profile = owner.profile
+        profile.extra_info = request.data['extra_info']
+        profile.save()
+        return Response({'message': 'Profile Successfully Updated!!!'},
+                        status=status.HTTP_201_CREATED)
 
 
 class PackageUpdateCreateView(APIView):
@@ -113,3 +128,12 @@ class PackageUpdateCreateView(APIView):
             package.delete()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProfileView(ListAPIView):
+    serializer_class = ProfileSerializer
+
+    def get_queryset(self):
+        user = User.objects.filter(id=self.request.user.id)
+        profile = Profile.objects.filter(user=user[0])
+        return profile

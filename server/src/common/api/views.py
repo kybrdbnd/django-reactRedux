@@ -9,6 +9,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_jwt.settings import api_settings
+from django.http import Http404
+
 
 def generate_random_username(length=8, chars=ascii_lowercase + digits, split=4, delimiter='-'):
 
@@ -50,6 +52,12 @@ def get_auth_token(request, data):
 class UserCreateView(APIView):
     permission_classes = (AllowAny,)
 
+    def get_object(self, username):
+        try:
+            return User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Http404
+
     def post(self, request, format=None):
         user = User.objects.create_user(username=generate_random_username(),
                                         password=request.data['password'],
@@ -68,6 +76,19 @@ class UserCreateView(APIView):
             return Response({'message': 'u failed'},
                             status=status.HTTP_400_BAD_REQUEST)
 
+    def put(self, request, format=None):
+        user = self.get_object(request.user.username)
+        user.first_name = request.data['first_name']
+        user.last_name = request.data['last_name']
+        user.email = request.data['email']
+        user.save()
+        user_profile = user.profile
+        user_profile.extra_info = request.data['extra_info']
+        user_profile.save()
+        return Response({
+            'message': 'Profile Updated Successfully!!!'},
+            status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -82,7 +103,7 @@ def user_signIn(request):
         if user.profile.user_type == 'C':
             next_url = '/profile'
         elif user.profile.user_type == 'V':
-            next_url = '/company'
+            next_url = '/dashboard'
         return Response({
                         'token': jwt_token,
                         'next_url': next_url

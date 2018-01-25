@@ -16,6 +16,7 @@ class ProfileForm extends Component {
 			age: props.details['profile']['extra_info']['age']
 		}
 		this.handleChange = this.handleChange.bind(this)
+		this.saveProfile = this.saveProfile.bind(this)
 	}
 
 
@@ -26,9 +27,22 @@ class ProfileForm extends Component {
 		this.setState({[name]: value})
 	}
 
+	saveProfile(e){
+		e.preventDefault()
+		let form_data = {
+			first_name: this.state.first_name,
+			last_name: this.state.last_name,
+			email: this.state.email,
+			extra_info: {
+				age: this.state.age
+			}
+		}
+		this.props.updateProfile(form_data)
+	}	
+
 	renderProfileForm(){
 		let formData = 
-			<form>
+			<form onSubmit={this.saveProfile}>
 				<Row>
 					<Col md={4}>
 						<h3>Username:</h3> {this.state.username}

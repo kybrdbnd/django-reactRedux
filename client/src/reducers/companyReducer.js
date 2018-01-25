@@ -7,6 +7,8 @@ export default function companyListReducer(state = [], action){
 			return action.token
 		case 'SIGNUP_SUCCESSS':
 			return action.token
+		case 'COMPANY_PROFILE_SUCCESS':
+			return action.data
 		default:
 			return state;
 	}

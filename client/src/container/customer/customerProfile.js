@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Profile from '../../components/customer/profile';
-import { getCustomerDetail } from '../../actions/customer';
+import { getCustomerDetail, customerProfileUpdate } from '../../actions/customer';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,6 +15,10 @@ const mapDispatchToProps = dispatch => ({
     getCustomerDetail: () => {
         dispatch(getCustomerDetail());
     },
+
+    updateCustomerProfile: (form_data) => {
+    	dispatch(customerProfileUpdate(form_data))
+    }
 
 })
 

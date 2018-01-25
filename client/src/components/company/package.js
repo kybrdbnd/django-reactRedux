@@ -1,4 +1,3 @@
-import Sidebar from './sidebar'
 import React, { Component } from 'react';
 import PackageList from './packageList'
 import {Button, Row, Grid, Modal, Col, FormControl, FormGroup, ControlLabel} from 'react-bootstrap';
@@ -80,8 +79,6 @@ class Package extends Component{
 
 	render(){
 		return (
-				<Row>
-				<Sidebar/>
 				<Grid>
 					<Button bsStyle="info" onClick={this.addPackage}>Add Package
 						<FontAwesome
@@ -103,8 +100,6 @@ class Package extends Component{
 				    </Modal.Footer>
 				    </Modal>
 				</Grid>
-				</Row>
-			
 
 			)
 	}

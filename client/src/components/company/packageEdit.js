@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Row, Grid, Col, Modal, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
+import {Button, Row, Col, Modal, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 
 class PackageEdit extends Component{
 	
